@@ -1,1 +1,1 @@
-import * as TaskModel from './Task.model.js';
+export * as TaskModel from './Task.model.js';
