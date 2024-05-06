@@ -12,7 +12,7 @@ router.route("/")
 
 router.route("/")
 
-.put((req, res) => {})  
+.put(TaskValidation.UpdateTask, validation, TaskController.UpdateTask)  
 
-.delete((req, res) => {})
+.delete(TaskValidation.DeleteTask, validation, TaskController.DeleteTask)
 export default router;

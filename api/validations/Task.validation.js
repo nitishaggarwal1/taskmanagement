@@ -6,3 +6,13 @@ export const AddTask = [
 
 
 ]
+
+export const UpdateTask = [
+    param("id").isString().withMessage("Id must be a String").isMongoId().withMessage("Id must be a mongo id")
+
+]
+
+export const DeleteTask = [
+    param("id").isString().withMessage("Id must be a String").isMongoId().withMessage("Id must be a mongo id")
+
+]

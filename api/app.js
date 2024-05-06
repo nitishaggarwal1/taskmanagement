@@ -12,4 +12,13 @@ app.use(express.urlencoded({extended:false}));
 
 app.use("/api/v1", Routes);
 
+app.use((req,res) => {
+    res.send({
+        code: 404,
+        msg: "page not found",
+        success: false
+    })
+    return
+})
+
 export default app;
