@@ -6,7 +6,7 @@ import {validation} from './../middlewares/validate.js';
 
 router.route("/")
 
-.get((req, res) => {})
+.get(TaskController.GetAllTask)
 
 .post(TaskValidation.AddTask, validation, TaskController.AddTask);
 
