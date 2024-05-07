@@ -35,7 +35,7 @@ export const GetAllTask = async () => {
         return {
             code: httpStatus.INTERNAL_SERVER_ERROR,
             success: false,
-            msg: error,
+            msg: error.message,
             AllTask: [],
             total: 0
         }
@@ -53,8 +53,7 @@ export const UpdateTask = async (id) => {
             return {
                 code: httpStatus.NOT_FOUND,
                 success: false,
-                msg: 'Task not found',
-                
+                msg: 'Task not found',  
             }
          }
          if(tasks.status) {

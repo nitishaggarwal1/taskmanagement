@@ -10,7 +10,7 @@ router.route("/")
 
 .post(TaskValidation.AddTask, validation, TaskController.AddTask);
 
-router.route("/")
+router.route("/:id")
 
 .put(TaskValidation.UpdateTask, validation, TaskController.UpdateTask)  
 
