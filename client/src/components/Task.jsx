@@ -4,14 +4,16 @@ import toast from 'react-hot-toast';
 import { useDeleteTaskMutation, useUpdateTaskMutation } from '../provider/redux/queries/Task';
 
 const Task = ({index, data, refetchTask}) => {
-  const [updateTask, updateTaskResponse] = useUpdateTaskMutation();
-  const [deleteTask, deleteTaskResponse] = useDeleteTaskMutation();
+  const [UpdateTask, updateTaskResponse] = useUpdateTaskMutation();
+  const [DeleteTask, deleteTaskResponse] = useDeleteTaskMutation();
 
   const updateTaskHandler = async (id) => {
     try {
-        const [error]= await updateTask(id);
+        const {error} = await UpdateTask(id);
+        console.log(error);
         if(error) {
           toast.error(error?.data?.msg)
+          return
         }
         await refetchTask();
         toast.success("Task Updated");
@@ -20,11 +22,14 @@ const Task = ({index, data, refetchTask}) => {
       }
   }
 
+
   const deleteTaskHandler = async (id) => {
     try {
-        const [error]= await deleteTask(id);
+        const {error} = await DeleteTask(id);
+        console.log(error);
         if(error) {
           toast.error(error?.data?.msg)
+          return
         }
         refetchTask();
         toast.success("Task Deleted");
@@ -40,7 +45,7 @@ const Task = ({index, data, refetchTask}) => {
       <td>{data?.title}</td>
       <td>{data?.description}</td>
       <td>
-        {data?.status?<FcCheckmark />: <FcCancel/>}
+        {data?.status? <FcCheckmark />: <FcCancel/>}
       </td>
       <td className='d-flex gap-2'>
         {!data?.status && <button disabled={updateTaskResponse.isLoading} onClick={() => updateTaskHandler(data?._id)}className='btn btn-sm btn-warning'>Update</button>

@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useAddTaskMutation } from '../provider/redux/queries/Task';
 
 const AddTask = () => {
-  const [AddTaskfn, AddTaskResponse] = useAddTaskMutation();
+  const [AddTaskFn, AddTaskResponse] = useAddTaskMutation();
 
   const validationSchema = yup.object({
     title:yup.string().required("Title is required"),
@@ -19,9 +19,11 @@ const AddTask = () => {
 
   const onSubmitHandler = async (e, {resetForm}) => {
     try {
-      const [error]= await AddTaskfn(e);
+      const {data, error} = await AddTaskFn(e);
+      console.log({data, error});
       if(error) {
         toast.error(error?.data?.msg)
+        return
       }
       toast.success("Task created");
       resetForm();

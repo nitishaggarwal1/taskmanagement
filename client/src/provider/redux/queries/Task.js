@@ -7,22 +7,22 @@ export const TaskApi = createApi({
     getAllTask: builder.query({
       query: () => `/task`,
     }),
-    AddTask: builder.mutation({
+    addTask: builder.mutation({
       query: (obj) => ({
         url: '/task',
         method: 'POST',
         body: obj
       }),
     }),
-    UpdateTask: builder.mutation({
+    updateTask: builder.mutation({
       query: (id) => ({
-        url: '/task/{id}',
+        url: `/task/${id}`,
         method: 'PUT',
       }),
     }),
-      DeleteTask: builder.mutation({
+      deleteTask: builder.mutation({
         query: (id) => ({
-          url: '/task/{id}',
+          url: `/task/${id}`,
           method: 'DELETE',
         }),
     }),
